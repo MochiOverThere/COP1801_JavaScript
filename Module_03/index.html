@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Activity_03</title>
+</head>
+<body>
+
+<!-- Display even/odd counts of for loop here -->
+<div id="countDisplay"></div>
+
+<script type="text/javascript">
+  function runScript() {
+    // Use a for loop to display even/odd counts from zero to ten
+    document.getElementById("countDisplay").innerHTML += "<h2>Counting from 0 to 10:</h2>"
+    for (var i = 0; i <= 10; i++) {
+      if (i % 2 == 0) {
+        document.getElementById("countDisplay").innerHTML += "Count " + i + " is even<br>";
+      } else {
+        document.getElementById("countDisplay").innerHTML += "Count " + i + " is odd<br>";
+      }
+    }
+
+    // Ask user for a number from 5 to 20 and increment a counter until it equals the user's number
+    let myNum;
+    do {
+      // Receive number between 5 and 10 as user input
+      myNum = prompt("Please enter a number between 5 and 20:");
+      // Convert myNum to an integer + check if number is within range
+      myNum = parseInt(myNum);
+    } while (isNaN(myNum) || myNum < 5 || myNum > 20);
+    // Display loop counter until equal to the value of myNum (starting from 1(using a do-while loop))
+    document.getElementById("countDisplay").innerHTML += "<h2>Loop counter until it equals " + myNum + ":</h2>"
+    let counter = 1;
+    do {
+      document.getElementById("countDisplay").innerHTML += counter + "<br>";
+      counter++;
+    } while (counter <= myNum);
+
+    // Store subjects in an array and display them readably with commas using foreach()
+    let subjects = ["Accounting", "Algebra", "Programming", "Art", "Data Analytics"];
+    // Display array values using forEach()
+    document.getElementById("countDisplay").innerHTML += "<h2>Subjects:</h2>";
+    subjects.forEach(function(subject) {
+      document.getElementById("countDisplay").innerHTML += subject + ", ";
+    });
+  }
+
+  // Call function after DOM is loaded to fix issue where prompt did not display
+  window.onload = runScript;
+
+</script>
+
+</body>
+</html>
