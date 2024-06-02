@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Activity_04</title>
+    <script type="text/javascript">
+
+      // Prompt user for service cost and quality
+      function promptServiceDetails() {
+        let serviceAmount = parseFloat(prompt("Enter the dollar amount of your service:"));
+        if (isValidAmount(serviceAmount)) {
+          let serviceQuality = prompt("How was your service? (great, ok, poor)").toLowerCase();
+          if (isValidQuality(serviceQuality)) {
+            calculateTip(serviceAmount, serviceQuality);
+          }
+          else {
+            alert("Invalid service quality entered. Please enter 'great', 'ok', or 'poor'.");
+          }
+        }
+        else {
+          alert("Invalid service cost entered. Please enter an amount between $5.00 and $500.00.");
+        }
+      }
+
+      // Function to verify valid service quality
+      function isValidQuality(quality) {
+        return quality === "great" || quality === "ok" || quality === "poor";
+      }
+
+      // Function to verify valid service amount
+      function isValidAmount(amount) {
+        return !isNaN(amount) && amount >= 5.00 && amount <= 500.00;
+      }
+
+      // Function to calculate desired tip amount
+      function calculateTip(amount, quality) {
+        let tipPercent;
+        switch (quality) {
+          case "great":
+            tipPercent = 0.20;
+            break;
+          case "ok":
+            tipPercent = 0.15;
+            break;
+          case "poor":
+            tipPercent = 0.10;
+            break;
+        }
+        let tipAmount = amount * tipPercent;
+        alert(`For a service that cost $${amount.toFixed(2)}, with ${quality} service quality, the recommended tip amount is $${tipAmount.toFixed(2)}.`);
+      }
+
+    </script>
+
+  </head>
+  <body>
+    <h1>Tip Calculator</h1>
+    <button onclick="promptServiceDetails()">Calculate Tip</button>
+  </body>
+</html>
