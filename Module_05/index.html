@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Activity_05</title>
+  </head>
+  <body>
+    <h1>Meet My Dog</h1>
+    <div id="dogInfo"></div>
+
+      <script>
+        // Create a literal object named myDog
+        let myDog = {
+            // Defining dog properties
+            name: "Mr. Peanutbutter",
+            breed: "Yellow Labrador Retriever",
+            series: "BoJack Horseman",
+            gender: "Male",
+            mySound: "I sound like prolific voice actor Paul F. Tompkins",
+
+            // Function to display a message using the properties of the myDog object
+            displayInfo: function() {
+                return "<p>Hello, my name is " + this.name + ", and I am a " + this.gender + ". When I bark " + this.mySound + ". I was a main character in the TV show " +
+                    this.series + ". My character is a " + this.breed + ". I was the star of the fictional show 'Mr. Peanutbutter's House' within the show " + this.series + ".</p>";
+            }
+        };
+
+        // Constructor to create dog objects
+        function Dog(name, breed, series, gender, mySound, canTalk) {
+            this.name = name;
+            this.breed = breed;
+            this.series = series;
+            this.gender = gender;
+            this.mySound = mySound;
+            this.canTalk = canTalk;
+
+            // Object Method to display a greeting
+            this.myGreeting = function() {
+                let greeting = "Hello, my name is " + this.name + ", and I am a " + this.gender + ". ";
+                if (this.canTalk) {
+                    greeting += "When I bark " + this.mySound + ". ";
+                } else {
+                    greeting += "I'm not able to talk, but I make sounds like " + this.mySound + ". ";
+                }
+                greeting += "I was a main character in the TV show " + this.series + ". ";
+                greeting += "My character is a " + this.breed + ". ";
+                greeting += "I was the star of the fictional show 'Mr. Peanutbutter's House' within the show " + this.series + ".";
+                return greeting;
+            };
+        }
+
+        // Create a new dog object using the constructor
+        let myDogConst = new Dog(
+            "Mr. Peanutbutter",
+            "Yellow Labrador Retriever",
+            "BoJack Horseman",
+            "Male",
+            "I sound like prolific voice actor Paul F. Tompkins",
+            true // Can talk
+        );
+
+        // Concatenate messages from both the literal object and the constructor
+        let infoDiv = document.getElementById("dogInfo");
+        let message = myDog.displayInfo() + "<br>" + myDogConst.myGreeting();
+
+        // Display the combined message
+        infoDiv.innerHTML = "<p>" + message + "</p>";
+      </script>
+  </body>
+</html>
