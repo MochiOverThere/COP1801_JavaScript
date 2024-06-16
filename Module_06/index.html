@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Activity_05</title>
+  </head>
+  <body>
+    <h1>Meet My Dogs</h1>
+    <div id="dogInfo"></div>
+
+      <script>
+        // Constructor to create dog objects
+        function Dog(name, breed, series, gender, mySound, canTalk) {
+            this.name = name;
+            this.breed = breed;
+            this.series = series;
+            this.gender = gender;
+            this.mySound = mySound;
+            this.canTalk = canTalk;
+
+            // Method to display a greeting
+            this.myGreeting = function() {
+              let greeting = "Hello, my name is " + this.name + ", and I am a " + this.gender + ". ";
+              if (this.canTalk) {
+                greeting += "I can talk! When I bark " + this.mySound + ". ";
+              } else {
+                greeting += "I cannot talk, but I make sounds like " + this.mySound + ". ";
+              }
+              greeting += "I was a main character in the TV show " + this.series + ". ";
+              greeting += "My character is a " + this.breed + ". ";
+              return greeting;
+            };
+
+            // Method to display all properties and values
+            this.displayProperties = function() {
+              let propertiesString = "<ul>";
+              for (let prop in this) {
+                if (this.hasOwnProperty(prop) && typeof this[prop] !== 'function') { // Corrected 'function'
+                  propertiesString += "<li><strong>" + prop + ":</strong> " + this[prop] + "</li>";
+                }
+              }
+              propertiesString += "</ul>";
+              return propertiesString;
+            };
+        }
+
+        // Creating dog objects
+        let dogs = [
+        new Dog("Mr. Peanutbutter", "Yellow Lab", "BoJack Horseman", "Male", "I sound like prolific voice actor Paul F. Tompkins", true),
+        new Dog("Brian Griffin", "Labrador Retriever", "Family Guy", "Male", "I say 'It's me, Brian'", true),
+        new Dog("Odie", "Beagle", "Garfield", "Male", "*friendly panting*", false)
+      ];
+
+      // Function to display dog information
+      function displayDogInfo(dogName) {
+        let selectedDog = null;
+        for (let i = 0; i < dogs.length; i++) {
+          if (dogs[i].name === dogName) {
+            selectedDog = dogs[i];
+            break;
+          }
+        }
+
+        if (selectedDog) {
+          let infoDiv = document.getElementById("dogInfo");
+          let message = "<h2>" + selectedDog.name + "'s Information:</h2>";
+          message += selectedDog.displayProperties();
+          message += "<p>" + selectedDog.myGreeting() + "</p>";
+          infoDiv.innerHTML = message;
+        } else {
+          alert("Error: The selected dog does not exist.");
+        }
+      }
+
+      // Prompt user to select a dog
+      let userInput = prompt("Select a dog: Mr. Peanutbutter, Brian Griffin, or Odie");
+      if (userInput) {
+        displayDogInfo(userInput);
+      }
+
+      </script>
+  </body>
+</html>
